@@ -1,5 +1,6 @@
 #setwd("E:/GitHub/ihepcds-MLRegression")
 #setwd("C:/Users/lquatrin/GitHub/ihepcds-MLRegression")
+#source("read_table.r")
 
 rm(list=ls())
 StringsAsFactors = FALSE
@@ -20,6 +21,8 @@ print("FilteredHousehouldPowerConsumption done...")
 
 NumericHousehouldPowerConsumption = FilteredHousehouldPowerConsumption
 NumericHousehouldPowerConsumption$Date = as.numeric(as.POSIXct(NumericHousehouldPowerConsumption$Date, format="%d/%m/%y"))
+#NumericHousehouldPowerConsumption$Date <- as.Date(NumericHousehouldPowerConsumption$Date, "%d/%m/%Y")
+
 print("NumericHousehouldPowerConsumption done...")
 
 print("Pre Processing finished")
