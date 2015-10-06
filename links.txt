@@ -25,3 +25,28 @@ https://azure.microsoft.com/en-us/documentation/articles/machine-learning-algori
 http://www.ai.mit.edu/courses/6.867-f04/lectures/lecture-5-ho.pdf
 
 http://www-di.inf.puc-rio.br/~milidiu/inf2979/aulas/03linear.pdf
+
+
+
+
+
+IN R:
+
+http://machinelearningmastery.com/linear-regression-in-r/
+http://machinelearningmastery.com/non-linear-regression-in-r/
+http://ocw.mit.edu/courses/sloan-school-of-management/15-097-prediction-machine-learning-and-statistics-spring-2012/lecture-notes/MIT15_097S12_lec02.pdf
+http://blog.datacamp.com/machine-learning-in-r/
+
+GENERAL:
+http://www.math.ucla.edu/~wittman/10c.1.11s/Lectures/Raids/Regression.pdf
+https://people.cs.pitt.edu/~milos/courses/cs2750-Spring03/lectures/class6.pdf
+https://www.cs.cmu.edu/~tom/mlbook/NBayesLogReg.pdf
+
+
+
+
+
+
+
+
+
