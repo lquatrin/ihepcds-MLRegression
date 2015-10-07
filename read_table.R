@@ -20,11 +20,21 @@ FilteredHousehouldPowerConsumption$Global_active_power = as.numeric(FilteredHous
 print("FilteredHousehouldPowerConsumption done...")
 
 NumericHousehouldPowerConsumption = FilteredHousehouldPowerConsumption
-NumericHousehouldPowerConsumption$Date = as.numeric(as.POSIXct(NumericHousehouldPowerConsumption$Date, format="%d/%m/%y"))
-#NumericHousehouldPowerConsumption$Date <- as.Date(NumericHousehouldPowerConsumption$Date, "%d/%m/%Y")
+#NumericHousehouldPowerConsumption$Date = as.numeric(as.POSIXct(NumericHousehouldPowerConsumption$Date, format="%d/%m/%y"))
+NumericHousehouldPowerConsumption$Date <- as.Date(NumericHousehouldPowerConsumption$Date, "%d/%m/%Y")
+
+dataset = NumericHousehouldPowerConsumption
+
+rm(DateActPowerHousehouldPowerConsumption)
+rm(NADateActPowerHousehouldPowerConsumption)
+rm(FilteredHousehouldPowerConsumption)
+rm(NumericHousehouldPowerConsumption)
+
 
 print("NumericHousehouldPowerConsumption done...")
 
 print("Pre Processing finished")
+
+#dataset[seq(1,50,1),]
 
 #plot(NumericHousehouldPowerConsumption$Date, NumericHousehouldPowerConsumption$Global_active_power)
