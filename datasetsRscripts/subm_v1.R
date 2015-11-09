@@ -18,11 +18,14 @@ dataset$Sub_metering_1      <- as.numeric(dataset$Sub_metering_1)
 dataset$Sub_metering_2      <- as.numeric(dataset$Sub_metering_2) 
 dataset$Sub_metering_3      <- as.numeric(dataset$Sub_metering_3) 
 
+ndatarows <- nrow(dataset)
 #1.(global_active_power*1000/60 - sub_metering_1 - sub_metering_2 - sub_metering_3) 
 #  represents the active energy consumed every minute (in watt hour) in the household
 #  by electrical equipment not measured in sub-meterings 1, 2 and 3. 
-for (i in 1:nrow(dataset) ) {
-  dataset$Global_active_power = dataset$Global_active_power*(1000/60) - dataset$Sub_metering_1 - dataset$Sub_metering_2 - dataset$Sub_metering_3 
+for (i in 1:ndatarows) {
+  dataset$Global_active_power[i] = dataset$Global_active_power[i]*(1000/60) - dataset$Sub_metering_1[i] - dataset$Sub_metering_2[i] - dataset$Sub_metering_3[i] 
+
+  print(i) 
 }
 
 dset_gp <- aggregate(dataset$Global_active_power , by=list(format(dataset$DataHora, "%Y-%m-%d %H:00")), mean)
@@ -100,3 +103,4 @@ rm(i)
 rm(st)
 rm(st2)
 rm(diffnumber)
+rm(ndatarows)
