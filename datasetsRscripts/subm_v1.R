@@ -1,3 +1,12 @@
+#Require: ConsumoNAN
+#dataset without the nan values: checked
+
+#2.The dataset contains some missing values in the measurements (nearly 1,25% of the rows). 
+#  All calendar timestamps are present in the dataset but for some timestamps, the measurement
+#  values are missing: a missing value is represented by the absence of value between two 
+#  consecutive semi-colon attribute separators. For instance, the dataset shows missing values 
+#  on April 28, 2007.
+
 dataset <- ConsumoNAN 
 dataset <- subset(dataset, select = c(1:3,7:9))
 
@@ -8,6 +17,13 @@ dataset$Global_active_power <- as.numeric(dataset$Global_active_power)
 dataset$Sub_metering_1      <- as.numeric(dataset$Sub_metering_1) 
 dataset$Sub_metering_2      <- as.numeric(dataset$Sub_metering_2) 
 dataset$Sub_metering_3      <- as.numeric(dataset$Sub_metering_3) 
+
+#1.(global_active_power*1000/60 - sub_metering_1 - sub_metering_2 - sub_metering_3) 
+#  represents the active energy consumed every minute (in watt hour) in the household
+#  by electrical equipment not measured in sub-meterings 1, 2 and 3. 
+for (i in 1:nrow(dataset) ) {
+  dataset$Global_active_power = dataset$Global_active_power*(1000/60) - dataset$Sub_metering_1 - dataset$Sub_metering_2 - dataset$Sub_metering_3 
+}
 
 dset_gp <- aggregate(dataset$Global_active_power , by=list(format(dataset$DataHora, "%Y-%m-%d %H:00")), mean)
 dset_s1 <- aggregate(dataset$Sub_metering_1 , by=list(format(dataset$DataHora, "%Y-%m-%d %H:00")), mean)
