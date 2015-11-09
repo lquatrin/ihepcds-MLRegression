@@ -1,6 +1,6 @@
 #setwd("E:/GitHub/SupportVectorRegression")
 #E:/GitHub/ihepcds-MLRegression
-#C:/Users/lquatrin/GitHub/ihepcds-MLRegression
+#C:/Users/lquatrin/Dropbox/SupportVectorRegression
 library(e1071)
 
 rescut <- resultado[8:34142,]
