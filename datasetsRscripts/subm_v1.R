@@ -23,9 +23,12 @@ ndatarows <- nrow(dataset)
 #  represents the active energy consumed every minute (in watt hour) in the household
 #  by electrical equipment not measured in sub-meterings 1, 2 and 3. 
 for (i in 1:ndatarows) {
+  print(i)
+  print(dataset$Global_active_power[i])
+  
   dataset$Global_active_power[i] = dataset$Global_active_power[i]*(1000/60) - dataset$Sub_metering_1[i] - dataset$Sub_metering_2[i] - dataset$Sub_metering_3[i] 
 
-  print(i) 
+  print(dataset$Global_active_power[i])
 }
 
 # pendente_step1.RData =============================================
@@ -84,7 +87,12 @@ dataset_sub_vs1_meanbyday$Y1 <- dataset_sub_vs1_submt1$x
 dataset_sub_vs1_meanbyday$Y2 <- dataset_sub_vs1_submt2$x
 dataset_sub_vs1_meanbyday$Y3 <- dataset_sub_vs1_submt3$x
 
-names(dataset_sub_vs1_meanbyday) <- c("X","Y", "Y1", "Y2", "Y3")
+names(dataset_sub_vs1_meanbyday) <- c("X","YG", "Y1", "Y2", "Y3")
+
+plot(x <- dataset_sub_vs1_meanbyday$X, y <- dataset_sub_vs1_meanbyday$YG, pch=16)
+plot(x <- dataset_sub_vs1_meanbyday$X, y <- dataset_sub_vs1_meanbyday$Y1, pch=16)
+plot(x <- dataset_sub_vs1_meanbyday$X, y <- dataset_sub_vs1_meanbyday$Y2, pch=16)
+plot(x <- dataset_sub_vs1_meanbyday$X, y <- dataset_sub_vs1_meanbyday$Y3, pch=16)
 
 rm(dataset_sub_vs1_global)
 rm(dataset_sub_vs1_submt1)
