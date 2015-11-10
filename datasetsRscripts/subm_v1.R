@@ -28,6 +28,8 @@ for (i in 1:ndatarows) {
   print(i) 
 }
 
+# pendente_step1.RData =============================================
+
 dset_gp <- aggregate(dataset$Global_active_power , by=list(format(dataset$DataHora, "%Y-%m-%d %H:00")), mean)
 dset_s1 <- aggregate(dataset$Sub_metering_1 , by=list(format(dataset$DataHora, "%Y-%m-%d %H:00")), mean)
 dset_s2 <- aggregate(dataset$Sub_metering_2 , by=list(format(dataset$DataHora, "%Y-%m-%d %H:00")), mean)
