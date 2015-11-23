@@ -1,6 +1,6 @@
 library(e1071)
 
-plot_res <- dataset_1_meanbyday
+plot_res <- dataset_1_md
 
 rmse <- function(error)
 {
@@ -25,3 +25,8 @@ if(require(e1071)){
 
 plot(x <- plot_res$X, y <- plot_res$Y, pch=16)
 lines(plot_res$X, tunedModelY, col = "green", pch=4)
+
+#> teste <- data.frame(X = seq(-3, 3, 0.5))
+#> predict(tunedModel, teste)
+
+> predict(tunedModel, teste)
