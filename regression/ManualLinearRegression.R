@@ -42,13 +42,14 @@ create_linear_regression <- function(ldata, alpha, iterations, epsilont = 0.0000
 
 #Read data set
 #data <- read.csv("regression.csv")
+data <- dataset_1_md
 
 #Creates a linear regression
-theta <- create_linear_regression(data, 0.001, 50000)
+#theta <- create_linear_regression(data, 0.001, 50000)
 
 #Predict for areas of the 35,000 and 70,000 people
-predict1 <- c(1,3.5) %*% theta
-predict2 <- c(1,7) %*% theta
+#predict1 <- c(1,3.5) %*% theta
+#predict2 <- c(1,7) %*% theta
 
 #compare with the lm function
 model_lm_R <- lm(Y ~ (X), data)
