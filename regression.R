@@ -8,9 +8,11 @@ dataset <- dataset_v1
 # Linear
 source('regression/linear.R')
 
-# SVR
-source('regression/svmregression.R')
+# SVR radial
+source('regression/svmregression_radial.R')
 
+# SVR polynomial
+source('regression/svmregression_poly.R')
 
 
 
