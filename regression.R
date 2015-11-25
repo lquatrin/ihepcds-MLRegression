@@ -5,15 +5,20 @@ library(e1071)
 dataset_test <- dataset_v1_test
 dataset <- dataset_v1
 
-# Linear
 source('regression/linear.R')
 
-# SVR radial
-source('regression/svmregression_radial.R')
+#http://wiki.eigenvector.com/index.php?title=Svm
+source('regression/SVR/epsilon_linear.R')
+source('regression/SVR/nu_linear.R')
 
-# SVR polynomial
-source('regression/svmregression_poly.R')
+source('regression/SVR/epsilon_radial.R')
+source('regression/SVR/nu_radial.R')
 
+source('regression/SVR/epsilon_polynomial.R')
+source('regression/SVR/nu_polynomial.R')
+
+#source('regression/SVR/epsilon_sigmoid.R')
+#source('regression/SVR/nu_sigmoid.R')
 
 
 
