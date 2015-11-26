@@ -1,4 +1,5 @@
 print("-> nu_radial")
+
 if(require(e1071)){
   r_e1071_nu_svr_rad <- svm(formula = Y ~ X ,
                          type = "nu-regression",
@@ -6,6 +7,8 @@ if(require(e1071)){
                          cost = 10,
                          
                          nu = 0.5,
+                         
+                         cross = k_cross_valid_svm_setup,
                          
                          kernel = "radial",
                          gamma = 4)

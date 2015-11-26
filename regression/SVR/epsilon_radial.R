@@ -1,4 +1,5 @@
 print("-> epsilon_radial")
+
 if(require(e1071)){
   r_svr_e1071_rad <- svm(formula = Y ~ X ,
                          type = "eps-regression",
@@ -6,6 +7,8 @@ if(require(e1071)){
                          cost = 10,
                          
                          epsilon = 0.1, 
+                         
+                         cross = k_cross_valid_svm_setup,
                          
                          kernel = "radial",
                          gamma = 4)
