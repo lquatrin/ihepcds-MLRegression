@@ -1,5 +1,4 @@
 library(e1071)
-library(DAAG)
 
 #Using the dataset V1
 
@@ -23,8 +22,12 @@ source('regression/linear.R')
 endmethod()
 
 #http://wiki.eigenvector.com/index.php?title=Svm
-#source('regression/SVR/epsilon_linear.R')
-#source('regression/SVR/nu_linear.R')
+source('regression/SVR/epsilon_linear.R')
+print(r_e1071_svr_eps_lin$MSE)
+endmethod()
+source('regression/SVR/nu_linear.R')
+print(r_e1071_svr_nu_lin$MSE)
+endmethod()
 
 source('regression/SVR/epsilon_radial.R')
 print(r_svr_e1071_rad$MSE)
@@ -33,11 +36,19 @@ source('regression/SVR/nu_radial.R')
 print(r_e1071_nu_svr_rad$MSE)
 endmethod()
 
-#source('regression/SVR/epsilon_polynomial.R')
-#source('regression/SVR/nu_polynomial.R')
+source('regression/SVR/epsilon_polynomial.R')
+print(r_svr_e1071_pol$MSE)
+endmethod()
+source('regression/SVR/nu_polynomial.R')
+print(r_nu_svr_e1071_pol$MSE)
+endmethod()
 
-#source('regression/SVR/epsilon_sigmoid.R')
-#source('regression/SVR/nu_sigmoid.R')
+source('regression/SVR/epsilon_sigmoid.R')
+print(r_e1071_eps_svr_sig$MSE)
+endmethod()
+source('regression/SVR/nu_sigmoid.R')
+print(r_e1071_nu_svr_sig$MSE)
+endmethod()
 
 # Cleaning environment
 rm(dataset_test)
