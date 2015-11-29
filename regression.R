@@ -14,9 +14,9 @@ endmethod <- function()
 
 k_cross_valid_svm_setup <- 10
 
-dataset <- dataset_v1
-dataset_training <- dataset_v1_test
-dataset_test <- dataset_v1[1075:1431,]
+#dataset <- dataset_v1
+dataset_training <- dataset[1:1074,]
+dataset_test <- dataset[1075:1431,]
 
 source('regression/linear.R')
 endmethod()
