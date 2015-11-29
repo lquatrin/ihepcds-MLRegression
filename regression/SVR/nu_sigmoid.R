@@ -25,7 +25,7 @@ if(require(e1071)){
   print(rmse(residual_error))
   
   plot(x <- dataset_training$X, y <- dataset_training$Y, pch=16, xlim = c(0,1431), xlab="Day", ylab="minute-average active power")
-  title(main="SVM Nu Sigmoid Regression: Training")
+  title(main="SVM Nu Sigmoid Regression")
   lines(dataset$X, predict(r_e1071_nu_svr_sig, dataset), col = "red", pch=4)
 }
 

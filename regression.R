@@ -18,6 +18,7 @@ k_cross_valid_svm_setup <- 10
 dataset_training <- dataset[1:1074,]
 dataset_test <- dataset[1075:1431,]
 
+#Sum of squared errors
 source('regression/linear.R')
 endmethod()
 
@@ -50,7 +51,35 @@ source('regression/SVR/nu_sigmoid.R')
 print(r_e1071_nu_svr_sig$MSE)
 endmethod()
 
+#NON LINEAR REGRESSION
+
+#Neural Network
+#http://machinelearningmastery.com/non-linear-regression-in-r/
+source('regression/NNet/nnet.R')
+endmethod()
+
+#Multivariate Adaptive Regression Splines
+source('regression/MARS/mars.R')
+endmethod()
+
+#k-Nearest Neighbor
+#source('regression/kNN/kNN.R')
+#endmethod()
+
+#LINEAR REGRESSION
+
+#Principal Component Regression (PCR)
+source('regression/PCR/pcr.R')
+endmethod()
+
+#Partial Least Squares Regression
+# creates a linear model of the data in a transformed projection of problem space
+source('regression/PLSR/plsr.R')
+endmethod()
+
 # Cleaning environment
+rm(dataset_training)
 rm(dataset_test)
-rm(dataset)
 rm(rmse)
+rm(k_cross_valid_svm_setup)
+rm(endmethod)

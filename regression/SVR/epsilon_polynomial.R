@@ -26,7 +26,7 @@ if(require(e1071)){
   print(rmse(residual_error))
   
   plot(x <- dataset_training$X, y <- dataset_training$Y, pch=16, xlim = c(0,1431), xlab="Day", ylab="minute-average active power")
-  title(main="SVM Epsilon Polynomial Regression: Training")
+  title(main="SVM Epsilon Polynomial Regression")
   lines(dataset$X, predict(r_svr_e1071_pol, dataset), col = "red", pch=4)
 }
 
