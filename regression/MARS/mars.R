@@ -1,6 +1,9 @@
 print("-> Multivariate Adaptive Regression Splines")
 
 library(earth)
+library(plotmo)
+library(plotrix)
+library(TeachingDemos)
 
 # load data
 r_mars <- earth(Y ~ X, dataset_training)

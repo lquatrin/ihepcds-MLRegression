@@ -22,14 +22,15 @@ ndatarows <- nrow(dataset)
 #1.(global_active_power*1000/60 - sub_metering_1 - sub_metering_2 - sub_metering_3) 
 #  represents the active energy consumed every minute (in watt hour) in the household
 #  by electrical equipment not measured in sub-meterings 1, 2 and 3. 
-for (i in 1:ndatarows) {
-  print(i)
-  print(dataset$Global_active_power[i])
-  
-  dataset$Global_active_power[i] = dataset$Global_active_power[i]*(1000/60) - dataset$Sub_metering_1[i] - dataset$Sub_metering_2[i] - dataset$Sub_metering_3[i] 
+dataset$Global_active_power = dataset$Global_active_power*(1000/60) - dataset$Sub_metering_1 - dataset$Sub_metering_2 - dataset$Sub_metering_3
+#for (i in 1:ndatarows) {
+#  print(i)
+#  print(dataset$Global_active_power[i])
+#  
+#  dataset$Global_active_power[i] = dataset$Global_active_power[i]*(1000/60) - dataset$Sub_metering_1[i] - dataset$Sub_metering_2[i] - dataset$Sub_metering_3[i] #
 
-  print(dataset$Global_active_power[i])
-}
+#  print(dataset$Global_active_power[i])
+#}
 
 # pendente_step1.RData =============================================
 
