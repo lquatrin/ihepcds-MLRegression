@@ -2,11 +2,11 @@ print("-> epsilon_linear")
 
 if(require(e1071)){
   r_e1071_svr_eps_lin <- svm(formula = Y ~ X ,
-                         type = "nu-regression",
+                         type = "eps-regression",
                          data = dataset_training,
                          cost = 10,
                          
-                         epsilon = 0.1,
+                         epsilon = 1.0,
                          
                          cross = k_cross_valid_svm_setup,
                          
@@ -22,7 +22,7 @@ if(require(e1071)){
   
   print(rmse(residual_error))
   
-  plot(x <- dataset_training$X, y <- dataset_training$Y, pch=16, xlim = c(0,1431), xlab="Day", ylab="minute-average active power")
+  plot(x <- dataset_training$X, y <- dataset_training$Y, pch='*', xlim = c(0,nrow(dataset)), xlab=plot_X_axis, ylab=plot_Y_axis)
   title(main="SVM Epsilon Linear Regression")
   lines(dataset$X, predict(r_e1071_svr_eps_lin, dataset), col = "red", pch=4)
 }
@@ -30,3 +30,5 @@ if(require(e1071)){
 #Cleaning environment
 rm(x)
 rm(y)
+rm(predictedY)
+rm(residual_error)

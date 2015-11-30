@@ -1,22 +1,22 @@
 print("-> linear")
 
-r_linearModel <- lm(Y ~ (X), dataset_training)
+r_linear <- lm(Y ~ (X), dataset_training)
 
 
-predictedY <- predict(r_linearModel, dataset_training)
+predictedY <- predict(r_linear, dataset_training)
 residual_error <- dataset_training$Y - predictedY  # /!\ this time  svrModel$residuals  is not the same as data$Y - predictedY
 
 print(rmse(residual_error))
 
-predictedY <- predict(r_linearModel, dataset_test)
+predictedY <- predict(r_linear, dataset_test)
 residual_error <- dataset_test$Y - predictedY  # /!\ this time  svrModel$residuals  is not the same as data$Y - predictedY
 
 print(rmse(residual_error))
 
 
 #First plot with green line
-line <- predict(r_linearModel, dataset)
-plot(x <- dataset_training$X, y <- dataset_training$Y, pch=16, xlim = c(0,1431), xlab="Day", ylab="minute-average active power")
+line <- predict(r_linear, dataset)
+plot(x <- dataset_training$X, y <- dataset_training$Y, pch='*', xlim = c(0,nrow(dataset)), xlab=plot_X_axis, ylab=plot_Y_axis)
 lines(dataset$X, line, col = "red", pch=4)
 
 title(main="Linear Regression")
@@ -25,3 +25,5 @@ title(main="Linear Regression")
 rm(x)
 rm(y)
 rm(line)
+rm(predictedY)
+rm(residual_error)
