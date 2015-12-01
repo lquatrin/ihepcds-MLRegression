@@ -6,14 +6,14 @@ if(require(e1071)){
                          data = dataset_training, 
                          cost = 1,
                          
-                         epsilon = 0.1,
+                         epsilon = 0.05,
                          
                          cross = k_cross_valid_svm_setup,
                          
                          kernel = "polynomial",
-                         degree = 4,
+                         degree = 3,
                          gama = 1,
-                         coef0 = 2)
+                         coef0 = 3)
 
   predictedY <- predict(r_e1071_svr_eps_pol, dataset_training)
   residual_error <- dataset_training$Y - predictedY  # /!\ this time  svrModel$residuals  is not the same as data$Y - predictedY

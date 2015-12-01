@@ -4,14 +4,14 @@ if(require(e1071)){
   r_e1071_svr_eps_rad <- svm(formula = Y ~ X ,
                          type = "eps-regression",
                          data = dataset_training,
-                         cost = 10,
+                         cost = svm_cost,
                          
-                         epsilon = 0.1, 
+                         epsilon = svm_eps, 
                          
                          cross = k_cross_valid_svm_setup,
                          
-                         kernel = "radial",
-                         gamma = 4)
+                         kernel = svm_kernel,
+                         gamma = svm_gamma)
 
   predictedY <- predict(r_e1071_svr_eps_rad, dataset_training)
   residual_error <- dataset_training$Y - predictedY  # /!\ this time  svrModel$residuals  is not the same as data$Y - predictedY
