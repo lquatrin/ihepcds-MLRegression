@@ -25,11 +25,14 @@ print_mse <- FALSE
 
 ren_dataset <- dataset
 #dataset$DiaHora <- (dataset$Dia * 24) + dataset$Hora
-id_y <- 3
-names(dataset) <- c("X", "Global", "Sub1", "Y", "Sub3", "SubG")
+id_y <- 1
+names(dataset) <- c("X", "Y", "Sub1", "Sub2", "Sub3", "SubG")
 
 plot_X_axis <- "Day"
 plot_Y_axis <- "Global Active Power"
+
+dataset_training <- dataset[1:1071,]
+dataset_test <- dataset[1072:1251,]
 
 dataset_training <- dataset[1:1251,]
 dataset_test <- dataset[1252:1431,]
@@ -73,7 +76,7 @@ if (id_y == 1 || id_y == 4)
   svm_cost <- 1.0
   svm_eps <- 0.01
   svm_kernel <- "radial"
-  svm_gamma <- 3
+  svm_gamma <- 4
 }
 if (id_y == 3)
 {
@@ -89,6 +92,7 @@ if (id_y == 5)
   svm_kernel <- "radial"
   svm_gamma <- 3
 }
+svm_title_plot <- "SVM epsilon Radial"
 source('regression/SVR/epsilon_radial.R')
 toprintmse(r_e1071_svr_eps_rad$MSE)
 endmethod()
@@ -98,7 +102,7 @@ if (id_y == 1 || id_y == 4)
   svm_cost <- 1.0
   svm_nu <- 0.5
   svm_kernel <- "radial"
-  svm_gamma <- 3
+  svm_gamma <- 4
 }
 if (id_y == 3)
 {
@@ -114,6 +118,7 @@ if (id_y == 5)
   svm_kernel <- "radial"
   svm_gamma <- 3
 }
+svm_title_plot <- "SVM nu Radial"
 source('regression/SVR/nu_radial.R')
 toprintmse(r_e1071_svr_nu_rad$MSE)
 endmethod()

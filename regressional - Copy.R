@@ -39,9 +39,9 @@ dataset$Y <- dataset$SubG
 plot_Y_axis <- "Global - SubMeterings"
 svm_formula <- SubG ~ Dia
 svm_cost <- 1.0
-svm_nu <- 0.6
+svm_nu <- 0.4
 svm_kernel <- "radial"
-svm_gamma <- 3
+svm_gamma <- 4
 svm_title_plot <- "SubGlobal Regression"
 source('regression/SVR/nu_radial.R')
 r_SubG <- r_e1071_svr_nu_rad
@@ -53,12 +53,11 @@ dataset$Y <- dataset$Sub3
 plot_Y_axis <- "SubMetering 3"
 svm_formula <- Sub3 ~ Dia
 svm_cost <- 1.0
-#svm_nu <- 0.5
-svm_eps <- 0.01
+svm_nu <- 0.5
 svm_kernel <- "radial"
 svm_gamma <- 4
 svm_title_plot <- "Sub3 Regression"
-source('regression/SVR/epsilon_radial.R')
+source('regression/SVR/nu_radial.R')
 r_Sub3 <- r_e1071_svr_nu_rad
 
 dataset_training$Y <- dataset_training$Sub2
@@ -72,10 +71,10 @@ svm_nu <- 0.5
 svm_kernel <- "radial"
 svm_gamma <- 3
 svm_title_plot <- "Sub2 Regression"
-#source('regression/SVR/nu_radial.R')
-#r_Sub2 <- r_e1071_svr_nu_rad
-source("regression/linear.R")
-r_Sub2 <- r_linear
+source('regression/SVR/nu_radial.R')
+r_Sub2 <- r_e1071_svr_nu_rad
+#source("regression/linear.R")
+#r_Sub2 <- r_linear
   
 dataset_training$Y <- dataset_training$Sub1
 dataset_test$Y <- dataset_test$Sub1
@@ -88,10 +87,10 @@ svm_nu <- 0.5
 svm_kernel <- "radial"
 svm_gamma <- 3
 svm_title_plot <- "Sub1 Regression"
-#source('regression/SVR/nu_radial.R')
-#r_Sub1 <- r_e1071_svr_nu_rad
-source("regression/linear.R")
-r_Sub1 <- r_linear
+source('regression/SVR/nu_radial.R')
+r_Sub1 <- r_e1071_svr_nu_rad
+#source("regression/linear.R")
+#r_Sub1 <- r_linear
 
 plot_Y_axis <- "Global Active Power"
 svm_cost <- 1.0
@@ -101,26 +100,20 @@ svm_gamma <- 3
 
 print("-> nu_ALL")
 
-r_e1071_svr_all <- svm(formula = Global ~ Sub1 + Sub2 + Sub3 + SubG,
-                       type = "nu-regression",
-                       data = dataset_training,
-                       cost = svm_cost,
-                       
-                       nu = svm_nu,
-                       
-                       cross = k_cross_valid_svm_setup,
-                       
-                       kernel = svm_kernel,
-                       gamma = svm_gamma)
-
 datasetpredtrain <- dataset_training
 datasetpredtrain$Sub1 <- predict(r_Sub1, dataset_training)
 datasetpredtrain$Sub2 <- predict(r_Sub2, dataset_training)
 datasetpredtrain$Sub3 <- predict(r_Sub3, dataset_training)
 datasetpredtrain$SubG <- predict(r_SubG, dataset_training)
 
-predictedY <- predict(r_e1071_svr_all, datasetpredtrain)
-residual_error <- datasetpredtrain$Global - predictedY  # /!\ this time  svrModel$residuals  is not the same as data$Y - predictedY
+predictedY <- c(1:nrow(datasetpredtrain))
+vsize <- nrow(datasetpredtrain)
+for (i in 1:vsize)
+{
+  predictedY[i] <- (datasetpredtrain$Sub1[i] + datasetpredtrain$Sub2[i] 
+                    + datasetpredtrain$Sub3[i] + datasetpredtrain$SubG[i]) * (60/1000)
+}
+residual_error <- dataset_training$Global - predictedY
 
 print(rmse(residual_error))
 
@@ -130,9 +123,14 @@ datasetpredtest$Sub2 <- predict(r_Sub2, dataset_test)
 datasetpredtest$Sub3 <- predict(r_Sub3, dataset_test)
 datasetpredtest$SubG <- predict(r_SubG, dataset_test)
 
-
-predictedY <- predict(r_e1071_svr_all, datasetpredtest)
-residual_error <- dataset_test$Global - predictedY  # /!\ this time  svrModel$residuals  is not the same as data$Y - predictedY
+predictedY <- c(1:nrow(datasetpredtest))
+vsize <- nrow(datasetpredtest)
+for (i in 1:vsize)
+{
+  predictedY[i] <- (datasetpredtest$Sub1[i] + datasetpredtest$Sub2[i] 
+                    + datasetpredtest$Sub3[i] + datasetpredtest$SubG[i]) * (60/1000)
+}
+residual_error <- dataset_test$Global - predictedY
 
 print(rmse(residual_error))
 

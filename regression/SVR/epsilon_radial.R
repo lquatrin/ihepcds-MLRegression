@@ -25,7 +25,7 @@ if(require(e1071)){
   
   plot(x <- dataset_training$X, y <- dataset_training$Y,
        pch='*', xlim = c(0,nrow(dataset)), xlab=plot_X_axis, ylab=plot_Y_axis)
-  title(main="SVM Epsilon Radial Regression")
+  title(main=svm_title_plot)
   lines(dataset$X, predict(r_e1071_svr_eps_rad, dataset), col = "red", pch=4)
 }
 
